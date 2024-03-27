@@ -7,10 +7,10 @@
   "scripts": {
     "openapi": "nodemon src/openapi.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run prod & npm run swagger",
+    "start": "npm run prod",
     "dev": "nodemon src/app.js",
-    "prod": "node src/app.js",
-    "swagger": "node src/openapi.js"
+    "prod": "node src/app.js"
+    
 
   },
   "keywords": [],

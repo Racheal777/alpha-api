@@ -11,12 +11,12 @@ dotenv.config();
 const modelNames = mongoose.modelNames();
 
 const app = express();
-handleResponses(app, {});
+handleResponses(app);
 
 app.use(express.json());
 app.use(cors());
 
-handleResponses(app);
+
 app.listen(8080, () => {
   init(
     app,

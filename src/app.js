@@ -4,13 +4,20 @@
  import mongoose from 'mongoose'
  import cors from 'cors'
  import { router } from "./routes/allroutes.js";
+ import { handleRequests, init, handleResponses } from "express-oas-generator";
 
+ //const expressOasGenerator = require('express-oas-generator');
+ 
 
+ 
+ const modelNames = mongoose.modelNames();
+ 
 dotenv.config()
 
 const PORT = process.env.PORT || 8080
 
 const app = express();
+handleResponses(app);
 
 app.use(express.json())
 app.use(cors())
@@ -24,5 +31,30 @@ const mongoUri = process.env.MONGO_URI
 
 
 app.listen(PORT, () => {
+    init(
+        app,
+        (spec) => {
+          spec.info = {
+            title: "Portfolio API Documentation",
+            description: "API Documentation for Portfolio website",
+          };
+          spec.host = "localhost:7060";
+          spec.schemes = ["http", "https"];
+    
+          return spec;
+        },
+        "./swagger.json",
+        60 * 1000,
+        "api-docs",
+        modelNames,
+        ["users"],
+        ["development"],
+        true
+      );
+    
     console.log(" Express app is running " + PORT)
 })
+
+app.use(router);
+
+handleRequests();
