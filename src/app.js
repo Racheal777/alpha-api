@@ -38,8 +38,8 @@ app.listen(PORT, () => {
             title: "Portfolio API Documentation",
             description: "API Documentation for Portfolio website",
           };
-          spec.host = "https://alpha-api-sl31.onrender.com";
-        //   spec.schemes = ["http", "https"];
+          spec.host = "alpha-api-sl31.onrender.com";
+          spec.schemes = ["http", "https"];
     
           return spec;
         },
